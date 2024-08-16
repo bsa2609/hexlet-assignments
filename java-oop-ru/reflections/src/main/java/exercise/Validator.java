@@ -55,12 +55,10 @@ public class Validator {
             if (field.isAnnotationPresent(MinLength.class)) {
                 field.setAccessible(true);
                 try {
-                    if (field.get(address) != null) {
-                        String fieldValue = field.get(address).toString();
-                        MinLength minLength = field.getAnnotation(MinLength.class);
-                        if (fieldValue.length() < minLength.minLength()) {
-                            listErrorMessages.add(String.format("length less than %s", minLength.minLength()));
-                        }
+                    String fieldValue = (String) field.get(address);
+                    MinLength minLength = field.getAnnotation(MinLength.class);
+                    if (fieldValue == null || fieldValue.length() < minLength.minLength()) {
+                        listErrorMessages.add(String.format("length less than %s", minLength.minLength()));
                     }
                 } catch (IllegalAccessException e) {
                     throw new RuntimeException(e);

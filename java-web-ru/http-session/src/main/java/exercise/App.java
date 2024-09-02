@@ -19,8 +19,8 @@ public final class App {
             var page = ctx.queryParamAsClass("page", Integer.class).getOrDefault(1);
             var per = ctx.queryParamAsClass("per", Integer.class).getOrDefault(5);
 
-            int firstIndex = (page - 1) * per + 1;
-            int lastIndex = firstIndex + per;
+            int firstIndex = (page - 1) * per;
+            int lastIndex = firstIndex + per - 1;
 
             ctx.json(USERS.subList(firstIndex, lastIndex));
         });

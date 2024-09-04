@@ -40,7 +40,7 @@ public final class App {
             var email = ctx.formParam("email").trim().toLowerCase();
             var password = ctx.formParam("password");
 
-            var user = new User(firstName, lasttName, email, password);
+            var user = new User(firstName, lasttName, email, Security.encrypt(password));
             UserRepository.save(user);
 
             ctx.redirect("/users");

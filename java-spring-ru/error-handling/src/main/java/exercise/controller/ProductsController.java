@@ -54,7 +54,6 @@ public class ProductsController {
                         String.format("Product with id %s not found", id)
                 ));
 
-        product.setId(data.getId());
         product.setTitle(data.getTitle());
         product.setPrice(data.getPrice());
 
